@@ -11,6 +11,6 @@
     "less-middleware": "*",
     "mongoose": "3.4.x",
     "async": "*",
-    "underscore": "*""
+    "underscore": "*"
   }
 }
