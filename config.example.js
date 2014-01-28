@@ -1,6 +1,8 @@
 module.exports = {
   tumblr: {
-    consumerKey: 'xxxxxxxxxxxxxxxxxxxxxxxx',
-    scretKey: 'xxxxxxxxxxxxxxxxxxxxxxxx'
+    consumer_key: 'xxxxxxxxxxxxxxxxxxxxxxxx',
+    consumer_secret: 'xxxxxxxxxxxxxxxxxxxxxxxx',
+    token: 'xxxxxxxxxxxxxxxxxxxxxxxx',
+    token_secret: 'xxxxxxxxxxxxxxxxxxxxxxxx'
   }
 }
