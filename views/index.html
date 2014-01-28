@@ -4,5 +4,13 @@
 
 
 {% block main %}
-  Hi there.
+  <form action='/feed' method="POST">
+    <label>TUMBLR URL</label>
+    <input type="text" name="url">
+
+    <label>TAG (optional)</label>
+    <input type="text" name="tag">
+
+    <input type="submit">
+  </form>
 {% endblock %}
