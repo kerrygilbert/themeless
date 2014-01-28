@@ -1,7 +1,7 @@
 themeless
 =========
 
-A tool for browsing / filtering tumblr feeds without annoying themes. Some day soon, I'd like to adapt this into a Chrome extension
+A tool for browsing / filtering tumblr feeds without annoying themes. Some day soon, I'd like to adapt this into a Chrome extension.
 
 ### Getting Started
 
@@ -20,7 +20,6 @@ $ git clone git@github.com:colpanik/themeless.git
 $ cd themeless
 $ mv config.example.js config.js
 $ mv db/config.example.js db/config.js
-
 ```
 
 If you have your Tumblr OAuth consumerKey and secret, config.js is where you'll put them.
@@ -34,4 +33,7 @@ $ npm install
 $ node app.js
 ```
 
-If you have configured a different database setup in the config file, run `$ DB=myDifferentConfiguration node app.js`
+If you have configured a different database setup in the config file, run
+```
+$ DB=myDifferentConfiguration node app.js
+```
