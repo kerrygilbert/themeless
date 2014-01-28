@@ -5,20 +5,26 @@ A tool for browsing / filtering tumblr feeds without annoying themes. Some day s
 
 ### Getting Started
 
-Assuming you have node.js and mongodb installed, clone this repository. Then rename the database config example file to config.js :
+IMPORTANT: You will need a Tumblr API key to make this work.
+
+Assuming you have node.js and mongodb installed, clone this repository. Then rename the config AND db/config example files to config.js :
 
 ```
 $ git clone git@github.com:colpanik/themeless.git
-$ mv themeless/db/config.example.js themeless/db/config.js
+$ cd themeless
+$ mv config.example.js config.js
+$ mv db/config.example.js db/config.js
 
 ```
 
-If you like, you can configure additional database setups in this file. If you're not interested in that sort of thing, it will just work.
+If you have your Rumblr OAuth consumerKey and secret, config.js is where you'll put them.
 
-When you're ready, hop into the themeless directory, run npm install and fire up the app.
+If you like, you can configure additional database setups in db/config.js. If you're not interested in that sort of thing, don't worry about it.
+
+When you're ready, run npm install and fire up the app.
 
 ```
-$ cd themeless && npm install
+$ npm install
 $ node app.js
 ```
 
