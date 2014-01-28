@@ -6,12 +6,13 @@ var express = require('express')
 
 var app = express();
 
-//nunjucks setup
+// Setup Nunjucks
 var env = new nunjucks.Environment(new nunjucks.FileSystemLoader(__dirname + '/views'), { 
-    dev: true, 
-    autoescape: true 
+  dev: true, 
+  autoescape: true 
 });
 
+// Attach Nunjucks filters (!!! move this to a different file soon)
 env.addFilter('shorten', function(str, count) {
   if(str.length > count) {
     return str.slice(0, count)+'...';
@@ -27,13 +28,12 @@ env.addFilter('json', function(data) {
 env.addFilter('date', function(date){
   return moment(date).format('MM/DD h:mma')
 })
-//
+
 
 app.configure(function(){
   app.set('views', __dirname + '/views');
-  // app.set('view engine', 'ejs');
   
-  //feed app to nunjucks environment
+  //Feed app to nunjucks environment
   env.express(app);
 
   app.use(express.favicon());
@@ -54,12 +54,11 @@ app.configure('development', function(){
 });
 
 // Connect mongoose
-var options = {};
 var mongo = require('./db/mongo-store');
-mongo(options);
+mongo({env: process.env.DB || 'development'});
 
 // Setup routes
-routes(app, options);
+routes(app, {});
 
 http.createServer(app).listen(3000, function(){
   console.log("Express server listening");

@@ -1,20 +1,17 @@
-/**
- * A module to connect to a MongoDB store
- */
-
-
 module.exports = function(options) {
   options = options || {};
-  var mongoose = options.mongoose || require('mongoose')
+  var mongoose = require('mongoose')
   , config = require('./config');
 
   module.exports.mongoose = mongoose;
+
   mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
+
   mongoose.connection.once('open', function() {
     console.log('MongoDB connection opened');
   });
 
-  var generate_mongo_url = function(obj) {
+  var mongoUrl = function(obj) {
     obj.hostname = (obj.hostname || 'localhost');
     obj.port = (obj.port || 27017);
     obj.db = (obj.db);
@@ -25,9 +22,8 @@ module.exports = function(options) {
     }
   }
 
-  // bootstrap mongoose connection
-  var mongo = config.mongodb.development;
-  var mongourl = generate_mongo_url(mongo);
+  var mongo = config.mongodb[options.env];
+  var mongourl = mongoUrl(mongo);
 
   if (mongoose.connection.readyState == 0) {
     module.exports.db = mongoose.connect(mongourl);
