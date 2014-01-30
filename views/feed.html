@@ -1,21 +1,13 @@
-{% extends 'layout.html' %}
+{% include 'posts.html' %}
 
+{% extends 'layout.html' %}
 {% block bodyclass %}home{% endblock %}
 
 
 {% block main %}
   <ul>
     {% for p in data.posts %}
-    <li>
-      <ol>
-        {% for i in p.photos %}
-          <li><img src="{{ i.alt_sizes[0].url }}" /></li>
-        {% endfor %}
-      </ol>
-    </li>
+      <li class="post">{{ renderPost(p, data.blog) }}</li>
     {% endfor %}
   </ul>
-
-
-  <!--  -->
 {% endblock %}

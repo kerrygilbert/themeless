@@ -2,7 +2,8 @@ var express = require('express')
   , routes = require('./router')
   , nunjucks = require('nunjucks')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , moment = require('moment');
 
 var app = express();
 
@@ -26,8 +27,8 @@ env.addFilter('json', function(data) {
 });
 
 env.addFilter('date', function(date){
-  return moment(date).format('MM/DD h:mma')
-})
+  return moment(date).format('MM/DD/YYYY h:mma')
+});
 
 
 app.configure(function(){

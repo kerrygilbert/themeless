@@ -3,15 +3,14 @@ var tumblr = require('tumblr');
 
 module.exports = function(req, res) {
   var options = {};
-  if(req.query.tag) { options.tag = req.query.tag }
-
+  if(req.query.id) { options.id = req.query.id }
   var b = new tumblr.Blog(req.query.url , config.tumblr);
 
   b.posts(options, function (err, data) {
     console.log(data);
 
     if(err) { console.log(err) }
-    res.render('feed.html', {
+    res.render('post.html', {
       data: data
     });
   });

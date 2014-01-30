@@ -1,0 +1,14 @@
+{% include 'posts.html' %}
+{% extends 'layout.html' %}
+{% block bodyclass %}post{% endblock %}
+
+{% block main %}
+  THIS IS A SINGLE POST
+  {{ renderSinglePost(data.posts[0]) }}
+
+  // poster (relink to themeless),
+  // source (link to source poster's url)
+  // time, tags, 
+  // notes
+
+{% endblock %}

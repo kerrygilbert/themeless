@@ -1,0 +1,67 @@
+{% macro renderTags(tags) %}
+  {% if item.tags.length > 0 %}
+    <li class="tags">
+      {% for t in item.tags %}
+        <a href="/feed?url={{ item.blog_name }}.tumblr.com&tag={{ t }}">{{ t }}</a>{% if not loop.last %},&nbsp;{% endif %}
+      {% endfor %}
+    </li>
+  {% endif %}
+{% endmacro %}
+
+{% macro renderPhoto(item) %}
+  <ol>
+    {% for i in item.photos %}
+      <li><img src="{{ i.alt_sizes[3].url }}" /></li>
+    {% endfor %}
+  </ol>
+{% endmacro %}
+
+
+{% macro renderVideo(item) %}
+  <h1>VIDEO</h1>
+{% endmacro %}
+
+
+{% macro renderText(item) %}
+  <h1>TEXT</h1>
+  {{ item | json }}
+{% endmacro %}
+
+
+{% macro renderLink(item) %}
+  <h1>LINK</h1>
+{% endmacro %}
+
+{% macro renderPost(item, blog) %}
+  {% if item.type == 'photo' %}
+    {{ renderPhoto(item) }}
+  {% elif item.type == 'video' %}
+    {{ renderVideo(item) }}
+  {% elif item.type == 'text' %}
+    {{ renderText(item) }}
+  {% elif item.type == 'link' %}
+    {{ renderLink(item) }}
+  {% else %}
+    <h2>NOTHING</h2>
+  {% endif %}
+
+  <ul class="meta">
+    <li class="date">{{ item.date | date }}</li>
+    <li class="poster">
+      <h3><a href="/feed?url={{ blog.name }}.tumblr.com">{{ item.blog_name }}</a></h3>
+    </li>
+    {{ renderTags(item.tags) }} 
+    {% if item.source_url %}
+      <li class="via">
+        via <a href="{{ item.source_url }}">{{ item.source_title }}</a>
+      </li> 
+    {% endif %}
+    <li><a href="/post?url={{ blog.name }}.tumblr.com&id={{ item.id }}">Details</a></li>
+  </ul>
+
+  {{ item | json }}
+{% endmacro %}
+
+{% macro renderSinglePost(item, blog) %}
+  {{ renderPost(item, blog) }}
+{% endmacro %}
